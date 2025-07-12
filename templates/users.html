@@ -23,7 +23,7 @@
             padding: 10px 15px;
             font-size: 1.1rem;
             display: flex;
-            justify-content: space-between; /* To push icon and text to edges */
+            justify-content: space-between;
             align-items: center;
         }
         .sidebar .nav-link:hover, .sidebar a.dropdown-toggle:hover {
@@ -33,10 +33,14 @@
         .sidebar .nav-link.active, .sidebar a.dropdown-toggle.active {
             background-color: #34495e;
             color: white;
-            border-right: 5px solid #007bff; /* Highlight effect */
+            border-right: 5px solid #007bff;
         }
-        .sidebar .bi-chevron-down, .sidebar .bi-chevron-up {
-            margin-right: auto; /* Pushes the icon to the left */
+        .sidebar .dropdown-toggle::after {
+            display: none;
+        }
+        .sidebar .bi-chevron-down {
+            color: red;
+            margin-right: auto;
         }
         .main-content {
             padding: 20px;
@@ -65,7 +69,6 @@
                         <li class="nav-item w-100">
                             <a href="#salesSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle fw-bold">
                                 <i class="fs-4 bi-cash-stack"></i> <span class="ms-1 d-none d-sm-inline">المبيعات</span>
-                                <i class="bi bi-chevron-down d-block d-sm-none"></i>
                                 <i class="bi bi-chevron-down"></i>
                             </a>
                             <ul class="collapse nav flex-column ms-1 w-100" id="salesSubmenu" data-bs-parent="#menu">
@@ -86,7 +89,6 @@
                         <li class="nav-item w-100">
                             <a href="#purchaseSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle fw-bold">
                                 <i class="fs-4 bi-bag-check"></i> <span class="ms-1 d-none d-sm-inline">المشتريات</span></a>
-                                <i class="bi bi-chevron-down d-block d-sm-none"></i>
                                 <i class="bi bi-chevron-down"></i>
                             <ul class="collapse nav flex-column ms-1 w-100" id="purchaseSubmenu" data-bs-parent="#menu">
                                 <li class="w-100">
@@ -104,9 +106,24 @@
                             </ul>
                         </li>
                         <li class="nav-item w-100">
+                            <a href="#accountingSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle fw-bold">
+                                <i class="fs-4 bi-calculator"></i> <span class="ms-1 d-sm-inline">المحاسبة</span></a>
+                                <i class="bi bi-chevron-down"></i>
+                            <ul class="collapse nav flex-column ms-1 w-100" id="accountingSubmenu" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">القيود اليومية</span></a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">كشف حساب</span></a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">تقارير مالية</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item w-100">
                             <a href="#settingsSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle fw-bold active">
                                 <i class="fs-4 bi-gear"></i> <span class="ms-1 d-sm-inline">الإعدادات</span></a>
-                                <i class="bi bi-chevron-down d-block d-sm-none"></i>
                                 <i class="bi bi-chevron-down"></i>
                             <ul class="collapse show nav flex-column ms-1 w-100" id="settingsSubmenu" data-bs-parent="#menu">
                                 <li class="w-100">
