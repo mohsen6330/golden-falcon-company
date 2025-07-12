@@ -22,18 +22,24 @@
             color: #bdc3c7;
             padding: 10px 15px;
             font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between; /* To push icon and text to edges */
+            align-items: center;
         }
         .sidebar .nav-link:hover, .sidebar a.dropdown-toggle:hover {
             background-color: #34495e;
             color: white;
         }
+        .sidebar .nav-link.active, .sidebar a.dropdown-toggle.active {
+            background-color: #34495e;
+            color: white;
+            border-right: 5px solid #007bff; /* Highlight effect */
+        }
+        .sidebar .bi-chevron-down, .sidebar .bi-chevron-up {
+            margin-right: auto; /* Pushes the icon to the left */
+        }
         .main-content {
             padding: 20px;
-        }
-        .card-custom {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
     </style>
 </head>
@@ -47,25 +53,27 @@
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100" id="menu">
                         <li class="nav-item w-100">
-                            <a href="/dashboard" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-house-door-fill"></i> <span class="ms-1 d-none d-sm-inline">الرئيسية</span>
+                            <a href="/dashboard" class="nav-link px-0 align-middle active">
+                                <i class="fs-4 bi-house-door-fill"></i> <span class="ms-1 d-none d-sm-inline fw-bold">الرئيسية</span>
                             </a>
                         </li>
                         <li class="nav-item w-100">
                             <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-bar-chart-line-fill"></i> <span class="ms-1 d-none d-sm-inline">إحصائيات عامة</span>
+                                <i class="fs-4 bi-bar-chart-line-fill"></i> <span class="ms-1 d-none d-sm-inline fw-bold">إحصائيات عامة</span>
                             </a>
                         </li>
                         <li class="nav-item w-100">
-                            <a href="#salesSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle">
+                            <a href="#salesSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle fw-bold">
                                 <i class="fs-4 bi-cash-stack"></i> <span class="ms-1 d-none d-sm-inline">المبيعات</span>
+                                <i class="bi bi-chevron-down d-block d-sm-none"></i>
+                                <i class="bi bi-chevron-down"></i>
                             </a>
                             <ul class="collapse nav flex-column ms-1 w-100" id="salesSubmenu" data-bs-parent="#menu">
                                 <li class="w-100">
                                     <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">العملاء</span></a>
                                 </li>
                                 <li class="w-100">
-                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">الفواتير</span></a>
+                                    <a href="/invoice" class="nav-link px-0"> <span class="d-none d-sm-inline">إنشاء فاتورة مبيعات</span></a>
                                 </li>
                                 <li class="w-100">
                                     <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">مرتجع المبيعات</span></a>
@@ -76,14 +84,16 @@
                             </ul>
                         </li>
                         <li class="nav-item w-100">
-                            <a href="#purchaseSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle">
+                            <a href="#purchaseSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle fw-bold">
                                 <i class="fs-4 bi-bag-check"></i> <span class="ms-1 d-none d-sm-inline">المشتريات</span></a>
+                                <i class="bi bi-chevron-down d-block d-sm-none"></i>
+                                <i class="bi bi-chevron-down"></i>
                             <ul class="collapse nav flex-column ms-1 w-100" id="purchaseSubmenu" data-bs-parent="#menu">
                                 <li class="w-100">
                                     <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">الموردون</span></a>
                                 </li>
                                 <li class="w-100">
-                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">الفواتير</span></a>
+                                    <a href="/invoice" class="nav-link px-0"> <span class="d-none d-sm-inline">إنشاء فاتورة مشتريات</span></a>
                                 </li>
                                 <li class="w-100">
                                     <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">مرتجع المشتريات</span></a>
@@ -94,8 +104,10 @@
                             </ul>
                         </li>
                         <li class="nav-item w-100">
-                            <a href="#settingsSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle">
+                            <a href="#settingsSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle fw-bold">
                                 <i class="fs-4 bi-gear"></i> <span class="ms-1 d-sm-inline">الإعدادات</span></a>
+                                <i class="bi bi-chevron-down d-block d-sm-none"></i>
+                                <i class="bi bi-chevron-down"></i>
                             <ul class="collapse nav flex-column ms-1 w-100" id="settingsSubmenu" data-bs-parent="#menu">
                                 <li class="w-100">
                                     <a href="/users" class="nav-link px-0"> <span class="d-none d-sm-inline">المستخدمون والصلاحيات</span></a>
@@ -110,7 +122,7 @@
                         </li>
                     </ul>
                     <hr>
-                    <a href="#" class="btn btn-outline-secondary w-100">تسجيل الخروج</a>
+                    <a href="/logout" class="btn btn-outline-secondary w-100">تسجيل الخروج</a>
                 </div>
             </div>
             <div class="col py-3 main-content">
@@ -119,11 +131,10 @@
                         <span class="navbar-brand mb-0 h1">لوحة التحكم</span>
                     </div>
                 </nav>
-
-                <div class="card card-custom p-4">
-                    <div class="card-body">
-                        <h5 class="card-title">مرحباً بك في لوحة التحكم</h5>
-                        <p class="card-text">اختر أحد الخيارات من القائمة الجانبية.</p>
+                <div class="row">
+                    <div class="col">
+                        <h2 class="mb-4">مرحباً بك في لوحة التحكم</h2>
+                        <p>اختر أحد الخيارات من القائمة الجانبية.</p>
                     </div>
                 </div>
             </div>
