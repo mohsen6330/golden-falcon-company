@@ -46,7 +46,6 @@ def users_page():
     else:
         return redirect(url_for('index'))
 
-# New route for the invoice page
 @app.route('/invoice')
 def invoice_page():
     if request.cookies.get('logged_in') == 'true':
