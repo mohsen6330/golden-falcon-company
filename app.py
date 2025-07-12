@@ -9,7 +9,7 @@ app.secret_key = 'your-secret-key-here'
 def index():
     if request.cookies.get('logged_in') == 'true':
         return redirect(url_for('dashboard'))
-    return render_template('login.html')
+    return render_template('index.html')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -25,7 +25,7 @@ def login():
         response.set_cookie('logged_in', 'true')
         return response
     else:
-        return redirect(url_for('index', error='Invalid username or password'))
+        return render_template('index.html', error='Invalid username or password')
 
 @app.route('/dashboard')
 def dashboard():
@@ -46,9 +46,26 @@ def users_page():
     else:
         return redirect(url_for('index'))
 
-@app.route('/inventory/add_product')
+@app.route('/inventory/add_product', methods=['GET', 'POST'])
 def add_product_page():
     if request.cookies.get('logged_in') == 'true':
+        if request.method == 'POST':
+            barcode = request.form.get('barcode')
+            name = request.form.get('name')
+            price = request.form.get('price')
+            quantity = request.form.get('quantity')
+            try:
+                conn = sqlite3.connect('database.db')
+                c = conn.cursor()
+                c.execute("INSERT INTO products (barcode, name, price, quantity) VALUES (?, ?, ?, ?)",
+                          (barcode, name, price, quantity))
+                conn.commit()
+                conn.close()
+                return render_template('add_product.html', success="تمت إضافة المنتج بنجاح.")
+            except sqlite3.IntegrityError:
+                return render_template('add_product.html', error="رمز الباركود موجود بالفعل. الرجاء استخدام رمز آخر.")
+            except Exception as e:
+                return render_template('add_product.html', error=f"حدث خطأ: {e}")
         return render_template('add_product.html')
     else:
         return redirect(url_for('index'))
