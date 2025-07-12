@@ -23,7 +23,7 @@
             padding: 10px 15px;
             font-size: 1.1rem;
             display: flex;
-            justify-content: space-between; /* To push icon and text to edges */
+            justify-content: space-between;
             align-items: center;
         }
         .sidebar .nav-link:hover, .sidebar a.dropdown-toggle:hover {
@@ -33,13 +33,24 @@
         .sidebar .nav-link.active, .sidebar a.dropdown-toggle.active {
             background-color: #34495e;
             color: white;
-            border-right: 5px solid #007bff; /* Highlight effect */
+            border-right: 5px solid #007bff;
         }
         .sidebar .bi-chevron-down, .sidebar .bi-chevron-up {
-            margin-right: auto; /* Pushes the icon to the left */
+            margin-right: auto;
         }
         .main-content {
             padding: 20px;
+        }
+        .welcome-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            transition: opacity 1s ease-in-out;
+        }
+        .welcome-message.fade-out {
+            opacity: 0;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -126,6 +137,10 @@
                 </div>
             </div>
             <div class="col py-3 main-content">
+                <div id="welcomeAlert" class="alert alert-success alert-dismissible fade show welcome-message" role="alert">
+                    مرحباً بك في لوحة التحكم!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 <nav class="navbar navbar-expand-lg bg-light rounded shadow-sm mb-4">
                     <div class="container-fluid">
                         <span class="navbar-brand mb-0 h1">لوحة التحكم</span>
@@ -141,5 +156,17 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JavaScript to automatically hide the welcome message after 3 seconds
+        document.addEventListener('DOMContentLoaded', function() {
+            const welcomeAlert = document.getElementById('welcomeAlert');
+            if (welcomeAlert) {
+                setTimeout(() => {
+                    welcomeAlert.classList.remove('show');
+                    welcomeAlert.classList.add('fade-out');
+                }, 3000); // 3000 milliseconds = 3 seconds
+            }
+        });
+    </script>
 </body>
 </html>
