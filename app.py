@@ -53,7 +53,7 @@ def add_product_page():
             barcode = request.form.get('barcode')
             name = request.form.get('name')
             price = request.form.get('price')
-            quantity = request.form.get('quantity')
+            quantity = 0 # Quantity is now set to 0 by default
             try:
                 conn = sqlite3.connect('database.db')
                 c = conn.cursor()
