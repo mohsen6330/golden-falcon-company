@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فاتورة</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            direction: rtl;
+            text-align: right;
+        }
+        .sidebar {
+            height: 100vh;
+            background-color: #2c3e50;
+            color: white;
+            padding-top: 20px;
+        }
+        .sidebar .nav-link, .sidebar a.dropdown-toggle {
+            color: #bdc3c7;
+            padding: 10px 15px;
+            font-size: 1.1rem;
+        }
+        .sidebar .nav-link:hover, .sidebar a.dropdown-toggle:hover {
+            background-color: #34495e;
+            color: white;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .invoice-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+        .invoice-header {
+            border-bottom: 2px solid #34495e;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .invoice-total-summary {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 sidebar d-flex flex-column">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    <a href="#" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline">لوحة التحكم</span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100" id="menu">
+                        <li class="nav-item w-100">
+                            <a href="/dashboard" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-house-door-fill"></i> <span class="ms-1 d-none d-sm-inline">الرئيسية</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="#" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-bar-chart-line-fill"></i> <span class="ms-1 d-none d-sm-inline">إحصائيات عامة</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="#salesSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle">
+                                <i class="fs-4 bi-cash-stack"></i> <span class="ms-1 d-none d-sm-inline">المبيعات</span>
+                            </a>
+                            <ul class="collapse nav flex-column ms-1 w-100" id="salesSubmenu" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">العملاء</span></a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="/invoice" class="nav-link px-0"> <span class="d-none d-sm-inline">الفواتير</span></a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">مرتجع المبيعات</span></a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">تقارير المبيعات</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="#purchaseSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle">
+                                <i class="fs-4 bi-bag-check"></i> <span class="ms-1 d-none d-sm-inline">المشتريات</span></a>
+                            <ul class="collapse nav flex-column ms-1 w-100" id="purchaseSubmenu" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">الموردون</span></a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="/invoice" class="nav-link px-0"> <span class="d-none d-sm-inline">الفواتير</span></a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">مرتجع المشتريات</span></a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">تقارير المشتريات</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="#settingsSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle">
+                                <i class="fs-4 bi-gear"></i> <span class="ms-1 d-sm-inline">الإعدادات</span></a>
+                            <ul class="collapse nav flex-column ms-1 w-100" id="settingsSubmenu" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="/users" class="nav-link px-0"> <span class="d-none d-sm-inline">المستخدمون والصلاحيات</span></a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">إعدادات الضرائب</span></a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">إعدادات الفواتير</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <hr>
+                    <a href="#" class="btn btn-outline-secondary w-100">تسجيل الخروج</a>
+                </div>
+            </div>
+            <div class="col py-3 main-content">
+                <nav class="navbar navbar-expand-lg bg-light rounded shadow-sm mb-4">
+                    <div class="container-fluid">
+                        <span class="navbar-brand mb-0 h1">فاتورة</span>
+                    </div>
+                </nav>
+
+                <div class="invoice-card">
+                    <div class="invoice-header d-flex justify-content-between align-items-center mb-5">
+                        <div class="company-details">
+                            <h2 class="text-secondary fw-bold">اسم الشركة</h2>
+                            <p class="mb-1">العنوان: شارع المثال، مدينة النموذج</p>
+                            <p class="mb-0">البريد الإلكتروني: info@company.com</p>
+                        </div>
+                        <div class="invoice-meta text-end">
+                            <h4 class="text-primary fw-bold">فاتورة #001</h4>
+                            <p>التاريخ: 2025-07-12</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-5">
+                        <div class="col-6">
+                            <h5 class="fw-bold">فاتورة إلى:</h5>
+                            <p class="mb-1">**اسم العميل / المورد**</p>
+                            <p class="mb-1">**عنوان العميل / المورد**</p>
+                            <p class="mb-0">**هاتف العميل / المورد**</p>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mb-5">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>اسم الصنف</th>
+                                    <th>الكمية</th>
+                                    <th>سعر الوحدة</th>
+                                    <th>الإجمالي الفرعي</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>مثال: منتج أ</td>
+                                    <td>2</td>
+                                    <td>100.00</td>
+                                    <td>200.00</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>مثال: منتج ب</td>
+                                    <td>3</td>
+                                    <td>50.00</td>
+                                    <td>150.00</td>
+                                </tr>
+                                </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row justify-content-end">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="invoice-total-summary">
+                                <div class="d-flex justify-content-between">
+                                    <span class="fw-bold">الإجمالي الفرعي:</span>
+                                    <span>350.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <span class="fw-bold">الضريبة (15%):</span>
+                                    <span>52.50</span>
+                                </div>
+                                <hr class="my-2">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="fw-bold">الإجمالي الكلي:</h5>
+                                    <h5>402.50</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
