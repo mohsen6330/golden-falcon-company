@@ -26,8 +26,7 @@ def login_page():
         username = request.form['username']
         password = request.form['password']
         # هنا سنقوم بالتحقق من بيانات المستخدم في قاعدة البيانات
-        # لكننا سنبني هذه الوظيفة لاحقاً
-        return "تم استقبال بيانات تسجيل الدخول بنجاح!"
+        return redirect(url_for('dashboard_page'))
     return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -35,18 +34,22 @@ def register_page():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-
+        
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
-
+        
         # حفظ بيانات المستخدم في قاعدة البيانات
         c.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
         conn.commit()
         conn.close()
 
-        return "تم حفظ بيانات التسجيل في قاعدة البيانات بنجاح!"
-
+        return redirect(url_for('dashboard_page'))
+    
     return render_template('register.html')
+
+@app.route('/dashboard')
+def dashboard_page():
+    return render_template('dashboard.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
