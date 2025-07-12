@@ -2,13 +2,13 @@ body {
     font-family: sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 100vh;
     margin: 0;
     background-image: url('../images/images (22).jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    padding-top: 40px;
 }
 
 .login-container {
@@ -17,6 +17,6 @@ body {
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.85); /* أضفنا شفافية للمربع */
+    background-color: rgba(255, 255, 255, 0.7);
     text-align: center;
 }
