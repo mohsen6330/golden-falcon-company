@@ -51,5 +51,16 @@ def register_page():
 def dashboard_page():
     return render_template('dashboard.html')
 
+@app.route('/users')
+def users_page():
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    # استرجاع جميع المستخدمين من قاعدة البيانات
+    c.execute("SELECT username, password FROM users")
+    users = c.fetchall()
+    conn.close()
+    
+    return render_template('users.html', users=users)
+
 if __name__ == '__main__':
     app.run(debug=True)
