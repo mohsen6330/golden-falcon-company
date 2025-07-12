@@ -46,6 +46,20 @@ def users_page():
     else:
         return redirect(url_for('index'))
 
+@app.route('/inventory/add_product')
+def add_product_page():
+    if request.cookies.get('logged_in') == 'true':
+        return render_template('add_product.html')
+    else:
+        return redirect(url_for('index'))
+
+@app.route('/inventory/add_warehouse')
+def add_warehouse_page():
+    if request.cookies.get('logged_in') == 'true':
+        return render_template('add_warehouse.html')
+    else:
+        return redirect(url_for('index'))
+
 @app.route('/invoice')
 def invoice_page():
     if request.cookies.get('logged_in') == 'true':
