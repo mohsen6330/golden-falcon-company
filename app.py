@@ -3,9 +3,15 @@ from flask import Flask, render_template, request, redirect, url_for, make_respo
 
 app = Flask(__name__)
 
+# You must use a secret key for session management, it's a good practice for security.
+app.secret_key = 'your-secret-key-here'
+
 # Route to display the login page
 @app.route('/')
 def index():
+    # Check if the user is already logged in (optional but good practice)
+    if request.cookies.get('logged_in') == 'true':
+        return redirect(url_for('dashboard'))
     return render_template('login.html')
 
 # Route to handle user login
@@ -63,7 +69,4 @@ def logout():
     return response
 
 if __name__ == '__main__':
-    # You must use a secret key for session management, even if we are not using Flask's session.
-    # It's a good practice for security.
-    app.secret_key = 'your-secret-key-here' 
     app.run(debug=True)
