@@ -13,7 +13,7 @@ body {
 
 .login-container {
     width: 250px;
-    height: 230px; /* تم تعديل الارتفاع ليناسب المحتوى */
+    height: 240px; /* تم تعديل الارتفاع ليناسب المحتوى */
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
