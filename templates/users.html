@@ -18,12 +18,12 @@
             color: white;
             padding-top: 20px;
         }
-        .sidebar .nav-link {
+        .sidebar .nav-link, .sidebar a.dropdown-toggle {
             color: #bdc3c7;
             padding: 10px 15px;
             font-size: 1.1rem;
         }
-        .sidebar .nav-link:hover {
+        .sidebar .nav-link:hover, .sidebar a.dropdown-toggle:hover {
             background-color: #34495e;
             color: white;
         }
@@ -48,43 +48,52 @@
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100" id="menu">
                         <li class="nav-item w-100">
                             <a href="/dashboard" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-house-door-fill"></i> <span class="ms-1 d-none d-sm-inline">الرئيسية</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="#" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-bar-chart-line-fill"></i> <span class="ms-1 d-none d-sm-inline">إحصائيات عامة</span>
                             </a>
                         </li>
                         <li class="nav-item w-100">
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-cash"></i> <span class="ms-1 d-none d-sm-inline">إدارة المبيعات</span>
+                            <a href="#salesSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle">
+                                <i class="fs-4 bi-cash-stack"></i> <span class="ms-1 d-none d-sm-inline">المبيعات</span>
                             </a>
+                            <ul class="collapse nav flex-column ms-1 w-100" id="salesSubmenu" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">الفواتير</span></a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">المنتجات</span></a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">العملاء</span></a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item w-100">
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-bag-check"></i> <span class="ms-1 d-sm-inline">إدارة المشتريات</span></a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-box-seam"></i> <span class="ms-1 d-sm-inline">إدارة المخزون</span></a>
+                            <a href="#purchaseSubmenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle">
+                                <i class="fs-4 bi-bag-check"></i> <span class="ms-1 d-none d-sm-inline">المشتريات</span></a>
+                            <ul class="collapse nav flex-column ms-1 w-100" id="purchaseSubmenu" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">الفواتير</span></a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">المنتجات</span></a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">الموردين</span></a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item w-100">
                             <a href="/users" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-people"></i> <span class="ms-1 d-sm-inline">إدارة المستخدمين</span></a>
                         </li>
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-person-badge"></i> <span class="ms-1 d-sm-inline">إدارة العملاء</span></a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-truck"></i> <span class="ms-1 d-sm-inline">إدارة الموردين</span></a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-wallet2"></i> <span class="ms-1 d-sm-inline">إدارة المصروفات</span></a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-gear"></i> <span class="ms-1 d-sm-inline">الإعدادات والصلاحيات</span></a>
-                        </li>
                     </ul>
+                    <hr>
+                    <a href="#" class="btn btn-outline-secondary w-100">تسجيل الخروج</a>
                 </div>
             </div>
             <div class="col py-3 main-content">
